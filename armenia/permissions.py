@@ -13,7 +13,10 @@ class IsSuperadmin(BasePermission):
 
 
 class IsComisionTecnicaOrReadOnly(BasePermission):
-    """Escritura solo para Comisión Técnica o Superadmin. Lectura para autenticados."""
+    """
+    - Lectura: cualquier usuario autenticado.
+    - Escritura: solo superuser, grupo 'Superadmin' o grupo 'Comision Tecnica'.
+    """
 
     def has_permission(self, request, view):
         if not request.user or not request.user.is_authenticated:
