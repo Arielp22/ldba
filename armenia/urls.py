@@ -16,6 +16,14 @@ from armenia.views.sancion import (SancionViewSet,HistorialSancionViewSet,MultaV
 from armenia.views.finanza import (MovimientoFinancieroViewSet, InformeFinancieroSemanalViewSet,)
 from armenia.views.lesion import LesionViewSet
 from armenia.views.administracion import (SesionViewSet,SesionParticipanteViewSet,DocumentoViewSet,NoticiaViewSet,NoticiaPublicaViewSet,)
+from armenia.views.estadisticas import (TablaPosicionesView,GoleadoresView,TarjetasView,)
+from armenia.views.publico import (
+    TemporadaPublicaViewSet,
+    CategoriaPublicaViewSet,
+    EquipoPublicoViewSet,
+    JornadaPublicaViewSet,
+    PartidoPublicoViewSet,
+)
 
 
 
@@ -46,7 +54,11 @@ router.register("sesiones-participantes", SesionParticipanteViewSet, basename="s
 router.register("documentos", DocumentoViewSet, basename="documento")
 router.register("noticias", NoticiaViewSet, basename="noticia")
 router.register("publico/noticias",      NoticiaPublicaViewSet,      basename="noticia-publica")
-
+router.register("publico/temporadas",  TemporadaPublicaViewSet, basename="publico-temporada")
+router.register("publico/categorias",  CategoriaPublicaViewSet, basename="publico-categoria")
+router.register("publico/equipos",     EquipoPublicoViewSet,    basename="publico-equipo")
+router.register("publico/jornadas",    JornadaPublicaViewSet,   basename="publico-jornada")
+router.register("publico/partidos",    PartidoPublicoViewSet,   basename="publico-partido")
 
 
 
@@ -59,5 +71,9 @@ urlpatterns = [
     path("auth/token/refresh/", TokenRefreshView.as_view()),
     path("auth/token/verify/",  TokenVerifyView.as_view()),
     path("auth/logout/",        LogoutView.as_view()),
+    path("publico/tabla-posiciones/", TablaPosicionesView.as_view()),
+    path("publico/goleadores/",       GoleadoresView.as_view()),
+    path("publico/tarjetas/",         TarjetasView.as_view()),
     path("", include(router.urls)),
+
 ]

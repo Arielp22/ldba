@@ -60,6 +60,13 @@ from .administracion import (
     NoticiaSerializer,
 )
 
+from .publico import (
+    TemporadaPublicaSerializer,
+    CategoriaPublicaSerializer,
+    EquipoPublicoSerializer,
+    JornadaPublicaSerializer,
+    PartidoPublicoSerializer,
+)
 
 
 
@@ -114,4 +121,11 @@ __all__ = [
     "SesionParticipanteSerializer",
     "DocumentoSerializer",
     "NoticiaSerializer",
+
+    # Publico
+    "TemporadaPublicaSerializer",
+    "CategoriaPublicaSerializer",
+    "EquipoPublicoSerializer",
+    "JornadaPublicaSerializer",
+    "PartidoPublicoSerializer",
 ]
