@@ -52,6 +52,17 @@ from .lesion import (
     LesionCambioEstadoSerializer,
 )
 
+# Bloque 8: Administración
+from .administracion import (
+    SesionSerializer,
+    SesionParticipanteSerializer,
+    DocumentoSerializer,
+    NoticiaSerializer,
+)
+
+
+
+
 __all__ = [
     # Auth
     "CustomTokenSerializer",
@@ -97,4 +108,10 @@ __all__ = [
     # Lesiones
     "LesionSerializer",
     "LesionCambioEstadoSerializer",
+    
+    # Administración
+    "SesionSerializer",
+    "SesionParticipanteSerializer",
+    "DocumentoSerializer",
+    "NoticiaSerializer",
 ]

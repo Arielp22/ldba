@@ -15,7 +15,7 @@ from armenia.views.vocalia import VocaliaViewSet, VocaliaJugadorViewSet
 from armenia.views.sancion import (SancionViewSet,HistorialSancionViewSet,MultaViewSet,ReciboViewSet,)
 from armenia.views.finanza import (MovimientoFinancieroViewSet, InformeFinancieroSemanalViewSet,)
 from armenia.views.lesion import LesionViewSet
-
+from armenia.views.administracion import (SesionViewSet,SesionParticipanteViewSet,DocumentoViewSet,NoticiaViewSet,NoticiaPublicaViewSet,)
 
 
 
@@ -41,6 +41,13 @@ router.register("recibos", ReciboViewSet, basename="recibo")
 router.register("movimientos-financieros", MovimientoFinancieroViewSet, basename="movimiento-financiero")
 router.register("informes-financieros-semanales", InformeFinancieroSemanalViewSet, basename="informe-financiero-semanal")
 router.register("lesiones", LesionViewSet, basename="lesion")
+router.register("sesiones", SesionViewSet, basename="sesion")
+router.register("sesiones-participantes", SesionParticipanteViewSet, basename="sesion-participante")
+router.register("documentos", DocumentoViewSet, basename="documento")
+router.register("noticias", NoticiaViewSet, basename="noticia")
+router.register("publico/noticias",      NoticiaPublicaViewSet,      basename="noticia-publica")
+
+
 
 
 

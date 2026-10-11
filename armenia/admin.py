@@ -11,7 +11,7 @@ from armenia.models.vocalia import Vocalia, VocaliaJugador
 from armenia.models.sancion import Sancion, HistorialSancion, Multa, Recibo
 from armenia.models.finanza import MovimientoFinanciero, InformeFinancieroSemanal
 from armenia.models.lesion import Lesion
-
+from armenia.models.administracion import (Sesion, SesionParticipante, Documento, Noticia,)
 
 
 
@@ -175,3 +175,33 @@ class LesionAdmin(admin.ModelAdmin):
     autocomplete_fields = ("jugador", "equipo", "partido", "vocalia")
     ordering = ("-fecha",)
 
+@admin.register(Sesion)
+class SesionAdmin(admin.ModelAdmin):
+    list_display = ("id", "fecha", "tipo", "estado")
+    list_filter = ("tipo", "estado")
+    search_fields = ("orden_del_dia", "acta")
+    ordering = ("-fecha",)
+
+
+@admin.register(SesionParticipante)
+class SesionParticipanteAdmin(admin.ModelAdmin):
+    list_display = ("id", "sesion", "nombre", "cargo", "presente")
+    list_filter = ("presente",)
+    search_fields = ("nombre", "cargo")
+    autocomplete_fields = ("sesion",)
+
+
+@admin.register(Documento)
+class DocumentoAdmin(admin.ModelAdmin):
+    list_display = ("id", "tipo", "titulo", "jugador", "equipo", "sesion", "created_at")
+    list_filter = ("tipo",)
+    search_fields = ("titulo", "descripcion")
+    autocomplete_fields = ("jugador", "equipo", "sesion")
+
+
+@admin.register(Noticia)
+class NoticiaAdmin(admin.ModelAdmin):
+    list_display = ("id", "titulo", "publicada", "destacada", "fecha_publicacion")
+    list_filter = ("publicada", "destacada")
+    search_fields = ("titulo", "resumen", "contenido")
+    ordering = ("-created_at",)
