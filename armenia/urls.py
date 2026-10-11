@@ -3,16 +3,37 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
 
+from armenia.serializers.auth import CustomTokenView
 from armenia.views.auth       import RegisterView, LogoutView
 from armenia.views.user       import UserViewSet
 from armenia.views.temporada  import TemporadaViewSet
 from armenia.views.categoria  import CategoriaViewSet
-from armenia.serializers.auth import CustomTokenView
+from armenia.views.equipo import EquipoViewSet, EquipoTemporadaCategoriaViewSet
+from armenia.views.jugador import (JugadorViewSet, JugadorEquipoTemporadaViewSet, CapitanEquipoTemporadaViewSet,)
+from armenia.views.jornada import JornadaViewSet, PartidoViewSet
+from armenia.views.vocalia import VocaliaViewSet, VocaliaJugadorViewSet
+
+
+
+
 
 router = DefaultRouter()
 router.register("users",       UserViewSet,       basename="user")
 router.register("temporadas",  TemporadaViewSet,  basename="temporada")
 router.register("categorias",  CategoriaViewSet,  basename="categoria")
+router.register("equipos", EquipoViewSet, basename="equipo")
+router.register("equipos-temporada-categoria", EquipoTemporadaCategoriaViewSet, basename="equipo-temporada-categoria")
+router.register("jugadores", JugadorViewSet, basename="jugador")
+router.register("jugadores-equipo-temporada", JugadorEquipoTemporadaViewSet, basename="jugador-equipo-temporada")
+router.register("capitanes-equipo-temporada", CapitanEquipoTemporadaViewSet, basename="capitan-equipo-temporada")
+router.register("jornadas", JornadaViewSet, basename="jornada")
+router.register("partidos",  PartidoViewSet, basename="partido")
+router.register("vocalias",          VocaliaViewSet,        basename="vocalia")
+router.register("vocalia-jugadores", VocaliaJugadorViewSet, basename="vocalia-jugador")
+
+
+
+
 
 urlpatterns = [
     path("auth/register/",      RegisterView.as_view()),

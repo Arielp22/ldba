@@ -24,3 +24,34 @@ class IsComisionTecnicaOrReadOnly(BasePermission):
         if request.method in SAFE_METHODS:
             return True
         return request.user.is_superuser or _in_group(request.user, "Comision Tecnica")
+
+
+class IsSuperadminOrReadOnly(BasePermission):
+    """
+    Lectura: cualquier usuario autenticado.
+    Escritura: solo Superadmin o superuser.
+    """
+    def has_permission(self, request, view):
+        if not request.user or not request.user.is_authenticated:
+            return False
+        if request.method in SAFE_METHODS:
+            return True
+        return request.user.is_superuser or _in_group(request.user, "Superadmin")
+
+class IsCalificaciones(BasePermission):
+    """Solo Comisión Calificaciones o Superadmin."""
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and (
+            request.user.is_superuser or _in_group(request.user, "Comision Calificaciones")
+        )
+
+
+class IsCalificacionesOrReadOnly(BasePermission):
+    """Lectura autenticada; escritura solo Calificaciones o Superadmin."""
+    def has_permission(self, request, view):
+        if not request.user or not request.user.is_authenticated:
+            return False
+        if request.method in SAFE_METHODS:
+            return True
+        return request.user.is_superuser or _in_group(request.user, "Comision Calificaciones")
+

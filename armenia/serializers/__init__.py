@@ -10,17 +10,57 @@ from .user import (
 # Bloque 1: Configuración base
 from .temporada import TemporadaSerializer
 from .categoria import CategoriaSerializer
+from .equipo import EquipoSerializer, EquipoTemporadaCategoriaSerializer
+
+# Bloque 2: Jugadores y capitanes
+from .jugador import (
+    JugadorSerializer,
+    JugadorCalificacionSerializer,
+    JugadorEquipoTemporadaSerializer,
+    JugadorEquipoTemporadaCreateSerializer,
+    CapitanEquipoTemporadaSerializer,
+)
+
+# Bloque 3: Jornadas y partidos
+from .jornada import (JornadaSerializer,PartidoSerializer,
+                      PartidoResultadoSerializer,)
+
+# Bloque 4: Vocalias
+from .vocalia import (
+    VocaliaSerializer,
+    VocaliaJugadorSerializer,
+    VocaliaRechazoSerializer,
+)
 
 __all__ = [
     # Auth
     "CustomTokenSerializer",
     "CustomTokenView",
+    
     # User
     "RegisterSerializer",
     "UserSerializer",
     "UserProfileSerializer",
     "ChangePasswordSerializer",
+
     # Configuración base
     "TemporadaSerializer",
     "CategoriaSerializer",
+    "EquipoSerializer",
+    "EquipoTemporadaCategoriaSerializer",
+
+    # Jugadores y capitanes
+    "JugadorSerializer",
+    "JugadorEquipoTemporadaSerializer",
+    "CapitanEquipoTemporadaSerializer",
+
+    # Jornadas y partidos
+    "JornadaSerializer",
+    "PartidoSerializer",
+    "PartidoResultadoSerializer",   
+
+    # Vocalias
+    "VocaliaSerializer",
+    "VocaliaJugadorSerializer",
+    "VocaliaRechazoSerializer",
 ]
