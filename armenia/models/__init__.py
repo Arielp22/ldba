@@ -6,6 +6,7 @@ from .jornada import Jornada, Partido
 from .vocalia import Vocalia, VocaliaJugador
 from .sancion import Sancion, HistorialSancion, Multa, Recibo
 from .finanza import MovimientoFinanciero, InformeFinancieroSemanal
+from .lesion import Lesion
 
 
 
@@ -15,5 +16,6 @@ __all__ = ["Temporada", "Categoria", "Equipo",
             "JugadorEquipoTemporada", "CapitanEquipoTemporada", 
             "Jornada", "Partido", "Vocalia", "VocaliaJugador", 
             "Sancion", "HistorialSancion", "Multa", "Recibo",
-            "MovimientoFinanciero", "InformeFinancieroSemanal"]
+            "MovimientoFinanciero", "InformeFinancieroSemanal",
+            "Lesion"]
 

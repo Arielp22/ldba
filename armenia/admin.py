@@ -10,6 +10,9 @@ from armenia.models.jornada import Jornada, Partido
 from armenia.models.vocalia import Vocalia, VocaliaJugador
 from armenia.models.sancion import Sancion, HistorialSancion, Multa, Recibo
 from armenia.models.finanza import MovimientoFinanciero, InformeFinancieroSemanal
+from armenia.models.lesion import Lesion
+
+
 
 
 
@@ -160,4 +163,15 @@ class InformeFinancieroSemanalAdmin(admin.ModelAdmin):
     )
     list_filter = ("estado", "anio")
     ordering = ("-anio", "-numero_semana")
+
+@admin.register(Lesion)
+class LesionAdmin(admin.ModelAdmin):
+    list_display = (
+        "id", "fecha", "jugador", "equipo",
+        "tipo", "gravedad", "estado", "monto_apoyo",
+    )
+    list_filter = ("estado", "gravedad", "tipo")
+    search_fields = ("jugador__nombres", "jugador__apellidos", "descripcion")
+    autocomplete_fields = ("jugador", "equipo", "partido", "vocalia")
+    ordering = ("-fecha",)
 

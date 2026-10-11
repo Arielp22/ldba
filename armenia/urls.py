@@ -14,6 +14,11 @@ from armenia.views.jornada import JornadaViewSet, PartidoViewSet
 from armenia.views.vocalia import VocaliaViewSet, VocaliaJugadorViewSet
 from armenia.views.sancion import (SancionViewSet,HistorialSancionViewSet,MultaViewSet,ReciboViewSet,)
 from armenia.views.finanza import (MovimientoFinancieroViewSet, InformeFinancieroSemanalViewSet,)
+from armenia.views.lesion import LesionViewSet
+
+
+
+
 
 
 router = DefaultRouter()
@@ -35,6 +40,7 @@ router.register("multas", MultaViewSet, basename="multa")
 router.register("recibos", ReciboViewSet, basename="recibo")
 router.register("movimientos-financieros", MovimientoFinancieroViewSet, basename="movimiento-financiero")
 router.register("informes-financieros-semanales", InformeFinancieroSemanalViewSet, basename="informe-financiero-semanal")
+router.register("lesiones", LesionViewSet, basename="lesion")
 
 
 

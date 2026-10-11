@@ -46,6 +46,11 @@ from .finanza import (
     InformeFinancieroSemanalSerializer,
 )
 
+# Bloque 7: Lesiones
+from .lesion import (
+    LesionSerializer,
+    LesionCambioEstadoSerializer,
+)
 
 __all__ = [
     # Auth
@@ -88,5 +93,8 @@ __all__ = [
     # Finanzas
     "MovimientoFinancieroSerializer",
     "InformeFinancieroSemanalSerializer",
-    
+
+    # Lesiones
+    "LesionSerializer",
+    "LesionCambioEstadoSerializer",
 ]
