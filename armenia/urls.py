@@ -12,7 +12,7 @@ from armenia.views.equipo import EquipoViewSet, EquipoTemporadaCategoriaViewSet
 from armenia.views.jugador import (JugadorViewSet, JugadorEquipoTemporadaViewSet, CapitanEquipoTemporadaViewSet,)
 from armenia.views.jornada import JornadaViewSet, PartidoViewSet
 from armenia.views.vocalia import VocaliaViewSet, VocaliaJugadorViewSet
-
+from armenia.views.sancion import (SancionViewSet,HistorialSancionViewSet,MultaViewSet,ReciboViewSet,)
 
 
 
@@ -30,6 +30,10 @@ router.register("jornadas", JornadaViewSet, basename="jornada")
 router.register("partidos",  PartidoViewSet, basename="partido")
 router.register("vocalias",          VocaliaViewSet,        basename="vocalia")
 router.register("vocalia-jugadores", VocaliaJugadorViewSet, basename="vocalia-jugador")
+router.register("sanciones", SancionViewSet, basename="sancion")
+router.register("historial-sanciones", HistorialSancionViewSet, basename="historial-sancion")
+router.register("multas", MultaViewSet, basename="multa")
+router.register("recibos", ReciboViewSet, basename="recibo")
 
 
 

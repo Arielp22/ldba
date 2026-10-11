@@ -8,6 +8,7 @@ from armenia.models.equipo import Equipo, EquipoTemporadaCategoria
 from armenia.models.jugador import (Jugador, JugadorEquipoTemporada, CapitanEquipoTemporada,)
 from armenia.models.jornada import Jornada, Partido
 from armenia.models.vocalia import Vocalia, VocaliaJugador
+from armenia.models.sancion import Sancion, HistorialSancion, Multa, Recibo
 
 
 
@@ -112,3 +113,32 @@ class VocaliaJugadorAdmin(admin.ModelAdmin):
     list_filter = ("tarjeta_amarilla", "tarjeta_roja", "es_capitan")
     search_fields = ("jugador__nombres", "jugador__apellidos", "equipo__nombre")
     autocomplete_fields = ("vocalia", "jugador", "equipo")
+
+@admin.register(Sancion)
+class SancionAdmin(admin.ModelAdmin):
+    list_display = ("id", "tipo", "jugador", "equipo", "motivo", "estado", "fecha_inicio", "dias")
+    list_filter = ("tipo", "estado")
+    search_fields = ("motivo", "articulo", "jugador__nombres", "equipo__nombre")
+    autocomplete_fields = ("jugador", "equipo", "partido", "vocalia")
+
+
+@admin.register(HistorialSancion)
+class HistorialSancionAdmin(admin.ModelAdmin):
+    list_display = ("id", "sancion", "estado_anterior", "estado_nuevo", "usuario", "created_at")
+    list_filter = ("estado_nuevo", "estado_anterior")
+    autocomplete_fields = ("sancion",)
+
+
+@admin.register(Multa)
+class MultaAdmin(admin.ModelAdmin):
+    list_display = ("id", "equipo", "monto", "motivo", "estado", "fecha_pago", "forma_pago")
+    list_filter = ("estado", "forma_pago")
+    search_fields = ("motivo", "equipo__nombre")
+    autocomplete_fields = ("sancion", "equipo")
+
+
+@admin.register(Recibo)
+class ReciboAdmin(admin.ModelAdmin):
+    list_display = ("id", "numero", "multa", "entregado_a", "entregado_por", "fecha_entrega")
+    search_fields = ("numero", "entregado_a", "entregado_por")
+    autocomplete_fields = ("multa",)

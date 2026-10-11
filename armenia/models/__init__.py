@@ -4,6 +4,7 @@ from .equipo import Equipo, EquipoTemporadaCategoria
 from .jugador import Jugador, JugadorEquipoTemporada, CapitanEquipoTemporada
 from .jornada import Jornada, Partido
 from .vocalia import Vocalia, VocaliaJugador
+from .sancion import Sancion, HistorialSancion, Multa, Recibo
 
 
 
@@ -11,5 +12,6 @@ from .vocalia import Vocalia, VocaliaJugador
 __all__ = ["Temporada", "Categoria", "Equipo",
             "EquipoTemporadaCategoria", "Jugador",
             "JugadorEquipoTemporada", "CapitanEquipoTemporada", 
-            "Jornada", "Partido", "Vocalia", "VocaliaJugador"]
+            "Jornada", "Partido", "Vocalia", "VocaliaJugador", 
+            "Sancion", "HistorialSancion", "Multa", "Recibo"]
 

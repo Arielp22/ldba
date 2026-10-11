@@ -32,6 +32,17 @@ from .vocalia import (
     VocaliaRechazoSerializer,
 )
 
+# Bloque 5: Sanciones
+from .sancion import (
+    SancionSerializer,
+    HistorialSancionSerializer,
+    MultaSerializer,
+    ReciboSerializer,
+)
+
+
+
+
 __all__ = [
     # Auth
     "CustomTokenSerializer",
@@ -63,4 +74,10 @@ __all__ = [
     "VocaliaSerializer",
     "VocaliaJugadorSerializer",
     "VocaliaRechazoSerializer",
+
+    # Sanciones
+    "SancionSerializer",
+    "HistorialSancionSerializer",
+    "MultaSerializer",
+    "ReciboSerializer",
 ]
