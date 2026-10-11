@@ -40,7 +40,11 @@ from .sancion import (
     ReciboSerializer,
 )
 
-
+# Bloque 6: Finanzas
+from .finanza import (
+    MovimientoFinancieroSerializer,
+    InformeFinancieroSemanalSerializer,
+)
 
 
 __all__ = [
@@ -80,4 +84,9 @@ __all__ = [
     "HistorialSancionSerializer",
     "MultaSerializer",
     "ReciboSerializer",
+
+    # Finanzas
+    "MovimientoFinancieroSerializer",
+    "InformeFinancieroSemanalSerializer",
+    
 ]

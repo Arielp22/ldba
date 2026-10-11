@@ -9,6 +9,7 @@ from armenia.models.jugador import (Jugador, JugadorEquipoTemporada, CapitanEqui
 from armenia.models.jornada import Jornada, Partido
 from armenia.models.vocalia import Vocalia, VocaliaJugador
 from armenia.models.sancion import Sancion, HistorialSancion, Multa, Recibo
+from armenia.models.finanza import MovimientoFinanciero, InformeFinancieroSemanal
 
 
 
@@ -142,3 +143,21 @@ class ReciboAdmin(admin.ModelAdmin):
     list_display = ("id", "numero", "multa", "entregado_a", "entregado_por", "fecha_entrega")
     search_fields = ("numero", "entregado_a", "entregado_por")
     autocomplete_fields = ("multa",)
+
+@admin.register(MovimientoFinanciero)
+class MovimientoFinancieroAdmin(admin.ModelAdmin):
+    list_display = ("id", "fecha", "tipo", "concepto", "valor", "responsable")
+    list_filter = ("tipo", "fecha")
+    search_fields = ("concepto", "responsable")
+    ordering = ("-fecha",)
+
+
+@admin.register(InformeFinancieroSemanal)
+class InformeFinancieroSemanalAdmin(admin.ModelAdmin):
+    list_display = (
+        "id", "numero_semana", "anio", "fecha_semana",
+        "cerveza", "boleteria", "multas", "egresos", "estado",
+    )
+    list_filter = ("estado", "anio")
+    ordering = ("-anio", "-numero_semana")
+
