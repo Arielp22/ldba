@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView
 
 from armenia.serializers.auth import CustomTokenView
-from armenia.views.auth       import RegisterView, LogoutView
+from armenia.views.auth       import RegisterView, LogoutView, MeView
 from armenia.views.user       import UserViewSet
 from armenia.views.temporada  import TemporadaViewSet
 from armenia.views.categoria  import CategoriaViewSet
@@ -71,6 +71,7 @@ urlpatterns = [
     path("auth/token/refresh/", TokenRefreshView.as_view()),
     path("auth/token/verify/",  TokenVerifyView.as_view()),
     path("auth/logout/",        LogoutView.as_view()),
+    path("auth/me/",            MeView.as_view()),
     path("publico/tabla-posiciones/", TablaPosicionesView.as_view()),
     path("publico/goleadores/",       GoleadoresView.as_view()),
     path("publico/tarjetas/",         TarjetasView.as_view()),

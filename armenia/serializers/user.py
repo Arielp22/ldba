@@ -45,16 +45,25 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+    groups = serializers.SerializerMethodField()
+    is_superuser = serializers.BooleanField(read_only=True)
 
     class Meta:
-        model  = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name']
-        read_only_fields = ['id']
+        model = User
+        fields = [
+            "id", "username", "email",
+            "first_name", "last_name",
+            "is_staff", "is_superuser", "groups",
+        ]
+        read_only_fields = ["id", "is_staff", "is_superuser", "groups"]
+
+    def get_groups(self, obj):
+        return list(obj.groups.values_list("name", flat=True))
 
     def validate_email(self, value):
-        request = self.context.get('request')
+        request = self.context.get("request")
         if User.objects.filter(email=value).exclude(pk=request.user.pk).exists():
-            raise serializers.ValidationError('This email is already in use.')
+            raise serializers.ValidationError("This email is already in use.")
         return value
 
 

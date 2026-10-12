@@ -45,3 +45,23 @@ class LogoutView(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         return Response({'message': 'Session closed successfully.'})
+
+
+class MeView(APIView):
+    """
+    GET /auth/me/
+    Devuelve los datos del usuario autenticado + sus grupos.
+    Se usa para validar que el token siga vivo y refrescar datos del user.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            "user_id": user.id,
+            "username": user.username,
+            "email": user.email,
+            "is_staff": user.is_staff,
+            "is_superuser": user.is_superuser,
+            "groups": list(user.groups.values_list("name", flat=True)),
+        })

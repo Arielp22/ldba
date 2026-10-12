@@ -11,14 +11,18 @@ class CustomTokenSerializer(TokenObtainPairSerializer):
         token['username'] = user.username
         token['email']    = user.email
         token['is_staff'] = user.is_staff
+        token['groups']   = list(user.groups.values_list('name', flat=True))
+        token['is_superuser'] = user.is_superuser
         return token
 
     def validate(self, attrs):
         data = super().validate(attrs)
-        data['user_id']  = self.user.id
-        data['username'] = self.user.username
-        data['email']    = self.user.email
-        data['is_staff'] = self.user.is_staff
+        data['user_id']      = self.user.id
+        data['username']     = self.user.username
+        data['email']        = self.user.email
+        data['is_staff']     = self.user.is_staff
+        data['is_superuser'] = self.user.is_superuser
+        data['groups']       = list(self.user.groups.values_list('name', flat=True))
         return data
 
 
