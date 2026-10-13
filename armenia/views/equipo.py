@@ -4,7 +4,6 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
-
 from armenia.models.equipo import Equipo, EquipoTemporadaCategoria
 from armenia.serializers.equipo import (
     EquipoSerializer,
