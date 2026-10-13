@@ -3,6 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.parsers import MultiPartParser, FormParser
 
 from armenia.models.jugador import (
     Jugador,
@@ -47,6 +48,35 @@ class JugadorViewSet(viewsets.ModelViewSet):
             jugador.observaciones = serializer.validated_data["observaciones"]
         jugador.save()
         return Response(JugadorSerializer(jugador).data)
+
+    @action(
+        detail=False,
+        methods=["post"],
+        url_path="importar",
+        parser_classes=[MultiPartParser, FormParser],
+    )
+    def importar(self, request):
+        """
+        Importa jugadores desde un Excel.
+        El archivo debe tener las columnas:
+        nombres, apellidos, cedula, fecha_nacimiento,
+        telefono, email, direccion, equipo, temporada, categoria.
+        """
+        from armenia.serializers.importar_jugadores import (
+            ImportarJugadoresSerializer,
+        )
+
+        serializer = ImportarJugadoresSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        resultado = serializer.save()
+
+        return Response(
+            {
+                "success": True,
+                "creados": resultado["creados"],
+            },
+            status=status.HTTP_201_CREATED,
+        )
 
 
 class JugadorEquipoTemporadaViewSet(viewsets.ModelViewSet):
